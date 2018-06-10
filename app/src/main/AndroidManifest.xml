@@ -57,16 +57,31 @@
         <activity
             android:name=".Leccourselist"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"></activity>
+            android:windowSoftInputMode="adjustNothing">
+
+        </activity>
         <activity
             android:name=".Userguide"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"></activity>
+            android:windowSoftInputMode="adjustNothing">
+
+        </activity>
         <activity
             android:name=".Aboutus"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"></activity>
-        <activity android:name=".uploadpdf"></activity>
+            android:windowSoftInputMode="adjustNothing">
+
+        </activity>
+        <activity
+            android:name=".view"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing">
+
+        </activity>
+
+        <activity android:name=".uploadpdf">
+
+        </activity>
     </application>
 
 </manifest>

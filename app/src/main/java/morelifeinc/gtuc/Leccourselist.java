@@ -74,7 +74,6 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
     ArrayList<String> depa;
     ArrayList<String> ccode;
     ArrayList<String> lec;
-
     //an array to hold the different pdf objects
     ArrayList<Pdf> pdfList= new ArrayList<Pdf>();
 
@@ -117,7 +116,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
         textView5 = (TextView) findViewById(R.id.textView5);
         textView5.setText(getIntent().getStringExtra("food"));
-        Toast.makeText(getApplicationContext(), textView5.getText().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), textView5.getText().toString(), Toast.LENGTH_SHORT).show();
         HashMap<String, String> postData = new HashMap<String, String>();
 
         postData.put("depa", textView5.getText().toString());
@@ -131,7 +130,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                             try {
                                 JSONArray jArray = new JSONArray(str);
-                                Toast.makeText(getApplicationContext(), String.valueOf(str), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), String.valueOf(str), Toast.LENGTH_SHORT).show();
 
                                 for (int i = 0; i < jArray.length(); i++) {
                                     JSONObject jsonObject = jArray.getJSONObject(i);
@@ -145,7 +144,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                 String pdfProgram = jsonObject.getString("program");
                                 String pdfAcademicyear = jsonObject.getString("academicyear");
                                 String pdfLname = jsonObject.getString("lname");
-
+                                    pdf.setUrl(pdfUrl);
                                 pdf.setDepartment(pdfDepartment);
                                 pdf.setProgram(pdfProgram);
                                 pdf.setAcademicyear(pdfAcademicyear);
@@ -167,7 +166,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                 if(str.contains("Failed")){
 
                     SweetAlertDialog su = new SweetAlertDialog(Leccourselist.this, SweetAlertDialog.ERROR_TYPE);
-                    su.setTitleText("Invalid Credentials");
+                    su.setTitleText("Sorry no questions available");
                     su.show();
 
                }
@@ -210,11 +209,16 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Pdf pdf = (Pdf) parent.getItemAtPosition(position);
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse(pdf.getUrl()));
-                startActivity(intent);
+//                Intent intent = new Intent();
+//                intent.setAction(Intent.ACTION_VIEW);
+//                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+//                intent.setData(Uri.parse(pdf.getUrl()));
+//                startActivity(intent);
+
+                Intent startMainScreen = new Intent(getApplicationContext(),view.class);
+                startMainScreen.putExtra("name", pdf.getUrl());
+
+                startActivity(startMainScreen);
 
             }
         });

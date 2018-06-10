@@ -110,18 +110,16 @@
 
     </GridLayout>
 
-    <!--<ImageButton-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:src="@drawable/downloadpage"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginTop="18dp"-->
-        <!--android:layout_marginRight="8dip"-->
-        <!--android:background="@drawable/dshape"-->
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/downloadlogo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="31dp"
+        android:layout_marginRight="8dip"
+        android:background="@drawable/dshape"
 
-        <!--/>-->
-
-
+        />
 
 </RelativeLayout >
