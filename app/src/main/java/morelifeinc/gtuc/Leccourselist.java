@@ -21,7 +21,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -107,12 +109,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
         //Requesting storage permission
         requestStoragePermission();
-        progressDialog = new ProgressDialog(this);
-
         listView = (ListView) findViewById(R.id.listview);
-
-//        progressDialog.setMessage("Fetching Pdfs... Please Wait");
-//        progressDialog.show();
 
         textView5 = (TextView) findViewById(R.id.textView5);
         textView5.setText(getIntent().getStringExtra("food"));
@@ -140,7 +137,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                 Pdf pdf  = new Pdf();
                                 String pdfName = jsonObject.getString("name");
                                 String pdfUrl = jsonObject.getString("url");
-                                String pdfDepartment = jsonObject.getString("department");
+                                String pdfDepartment = jsonObject.getString("coursename");
                                 String pdfProgram = jsonObject.getString("program");
                                 String pdfAcademicyear = jsonObject.getString("academicyear");
                                 String pdfLname = jsonObject.getString("lname");
@@ -223,6 +220,23 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             }
         });
 
+//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                // TODO Auto-generated method stub
+//
+//                Pdf pdf = (Pdf) parent.getItemAtPosition(position);
+//                Intent intent = new Intent();
+//                intent.setAction(Intent.ACTION_VIEW);
+//                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+//                intent.setData(Uri.parse(pdf.getUrl()));
+//                startActivity(intent);
+//
+//
+//                return true;
+//            }
+//        });
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -253,7 +267,10 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                 scroll.setSelected(true);
 
-                String [] acyearspin = {"2000/2001", "2001/2002", "2002/2003", "2003/2004", "2004/2005", "2005/2006", "2006/2007,"};
+                String [] acyearspin = {"2000/2001", "2001/2002", "2002/2003", "2003/2004", "2004/2005",
+                        "2005/2006", "2006/2007", "2007/2008", "2008/2009", "2009/2010"
+                ,"2010/2011", "2011/2012", "2012/2013", "2013/2014", "2014/2015", "2015/2016"
+                , "2016/2017", "2017/2018", "2018/2019"};
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(Leccourselist.this, android.R.layout.simple_spinner_dropdown_item, acyearspin);
                 s3.setAdapter(adapter);
 
@@ -510,106 +527,10 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 //        //adapter = new ArrayAdapter<String>(this, depa);
 //        listView.setAdapter(adapter);
 
-//        registerForContextMenu(listView);
+       registerForContextMenu(listView);
 
         search = (SearchView) findViewById(R.id.search);
         search.setOnQueryTextListener(this);
-
-//        HashMap<String, String> postData = new HashMap<String, String>();
-//
-//        postData.put("depa", textView5.getText().toString());
-//
-//        PostResponseAsyncTask task = new PostResponseAsyncTask(Leccourselist.this, postData, new AsyncResponse() {
-//            @Override
-//            public void processFinish(String str) {
-//                //Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
-//
-//                if (str.contains("success")) {
-//
-//                    try {
-//                        JSONArray jArray = new JSONArray(str);
-//
-//                        for (int i = 0; i < jArray.length(); i++) {
-//                            JSONObject data = jArray.getJSONObject(i);
-//                            Log.d("JSONResponse", String.valueOf(data));
-//
-//                            depa.add(data.getString("courses"));
-//                            ccode.add(data.getString("course_code"));
-//                            lec.add(data.getString("Lecturer"));
-//
-//                            adapter.notifyDataSetChanged();
-//                            //String kiev = textView3.getText().toString();
-//                        }
-//
-//                    } catch (JSONException e) {
-//
-//                        e.printStackTrace();
-//                    }
-//
-//
-////                    SweetAlertDialog su = new SweetAlertDialog(Lecportal.this, SweetAlertDialog.SUCCESS_TYPE);
-////                    su.setTitleText("Account created");
-////                    su.show();
-//
-//                }
-//
-//                if (str.contains("Failed")) {
-//
-//                    SweetAlertDialog su = new SweetAlertDialog(Leccourselist.this, SweetAlertDialog.ERROR_TYPE);
-//                    su.setTitleText("Exception handler failed");
-//                    su.show();
-//
-//                }
-//
-//            }
-//        });
-//
-//        //task.execute("http://aroma.one957.com/upload.php");
-//        //task.execute("http://192.168.137.1:8012/client/upload.php");
-//        task.execute("http://gtuc.one957.com/bringcourses.php");
-//        task.setEachExceptionsHandler(new EachExceptionsHandler() {
-//            @Override
-//            public void handleIOException(IOException e) {
-//                Toast.makeText(getApplicationContext(), "Cannot Connect to server  ", Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void handleMalformedURLException(MalformedURLException e) {
-//                Toast.makeText(getApplicationContext(), "URL Error ", Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void handleProtocolException(ProtocolException e) {
-//                Toast.makeText(getApplicationContext(), "Protocol Error ", Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
-//                Toast.makeText(getApplicationContext(), "Encoding Error ", Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//        });
-
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View v, int position, long id){
-//
-////                String food = String.valueOf(parent.getItemAtPosition(position));
-////                //Toast.makeText(getApplicationContext(), food, Toast.LENGTH_SHORT).show();
-////                Intent StartIntent = new Intent(getApplicationContext(), Courselist.class);
-////
-////                StartIntent.putExtra("food",food);
-////
-////                startActivity(StartIntent);
-//
-//            }
-//
-//        });
 
 
     }
@@ -639,6 +560,37 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Tap to download selected document");
+        menu.add(0,v.getId(),0,"Download");
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+        if (item.getTitle() == "Download"){
+
+            //Pdf pdf = (Pdf) parent.getItemAtPosition(position);
+            Pdf pdf = (Pdf) listView.getItemAtPosition(info.position);
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(pdf.getUrl()));
+            startActivity(intent);
+
+
+        }
+
+        return super.onContextItemSelected(item);
+
 
     }
 

@@ -13,11 +13,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Manish on 11/1/2016.
- */
-
-
 public class PdfAdapter extends ArrayAdapter<Pdf>
 {
     Activity activity;
@@ -45,6 +40,7 @@ public class PdfAdapter extends ArrayAdapter<Pdf>
             holder.appliance= (TextView) row.findViewById(R.id.appliance);
             holder.watts= (TextView) row.findViewById(R.id.watts);
             holder.acc33= (TextView) row.findViewById(R.id.acc33);
+
             row.setTag(holder);
         }
         else
@@ -53,12 +49,12 @@ public class PdfAdapter extends ArrayAdapter<Pdf>
         }
 
         pdf = data.get(position);
-//        holder.textViewName.setText(pdf.getName());
-//        holder.textViewUrl.setText(pdf.getUrl());
+
         holder.number1.setText(pdf.getDepartment());
         holder.appliance.setText(pdf.getProgram());
         holder.acc33.setText(pdf.getAcademicyear());
         holder.watts.setText(pdf.getLname());
+
         return row;
     }
 

@@ -21,7 +21,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -77,8 +79,6 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
     //an array to hold the different pdf objects
     ArrayList<Pdf> pdfList= new ArrayList<Pdf>();
 
-    //pdf adapter
-
     PdfAdapter pdfAdapter;
     //MyAdapter adapter;
     AlertDialog.Builder sett;
@@ -98,7 +98,6 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
 
     //Uri to store the image uri
     private Uri filePath;
-    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,12 +106,8 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
 
         //Requesting storage permission
         requestStoragePermission();
-        progressDialog = new ProgressDialog(this);
 
         listView = (ListView) findViewById(R.id.listview);
-
-//        progressDialog.setMessage("Fetching Pdfs... Please Wait");
-//        progressDialog.show();
 
         textView5 = (TextView) findViewById(R.id.textView5);
         textView5.setText(getIntent().getStringExtra("food"));
@@ -140,7 +135,7 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                             Pdf pdf  = new Pdf();
                             String pdfName = jsonObject.getString("name");
                             String pdfUrl = jsonObject.getString("url");
-                            String pdfDepartment = jsonObject.getString("department");
+                            String pdfDepartment = jsonObject.getString("coursename");
                             String pdfProgram = jsonObject.getString("program");
                             String pdfAcademicyear = jsonObject.getString("academicyear");
                             String pdfLname = jsonObject.getString("lname");
@@ -160,7 +155,6 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
 
                 }
                 if(str.contains("Failed")){
@@ -203,7 +197,6 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
             }
         });
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -241,7 +234,7 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
 //        //adapter = new ArrayAdapter<String>(this, depa);
 //        listView.setAdapter(adapter);
 
-//        registerForContextMenu(listView);
+        registerForContextMenu(listView);
 
         search = (SearchView) findViewById(R.id.search);
         search.setOnQueryTextListener(this);
@@ -359,6 +352,40 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
 
         return false;
     }
+
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Tap to download selected document");
+        menu.add(0,v.getId(),0,"Download");
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+        if (item.getTitle() == "Download"){
+
+            //Pdf pdf = (Pdf) parent.getItemAtPosition(position);
+            Pdf pdf = (Pdf) listView.getItemAtPosition(info.position);
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(pdf.getUrl()));
+            startActivity(intent);
+
+
+        }
+
+        return super.onContextItemSelected(item);
+
+
+    }
+
+
 
 //    @Override
 //    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
