@@ -1,0 +1,343 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:id="@+id/viewA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:background="@drawable/back"
+            android:orientation="horizontal"
+            >
+
+            <RelativeLayout
+                android:id="@+id/belo3w3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.8"
+                android:background="#000000"
+
+                >
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/viewB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:background="@drawable/back"
+            android:orientation="horizontal"
+
+            >
+
+            <RelativeLayout
+                android:id="@+id/below3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.8"
+                android:background="#000000"
+
+                >
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!--card_view:cardCornerRadius="10dp"-->
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        card_view:cardElevation="5dp"
+        android:layout_marginTop="70dp"
+        card_view:cardUseCompatPadding="true"
+
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="380dp"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:clipToPadding="false"
+
+            >
+
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:id="@+id/editText2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="8dip"-->
+                <!--android:layout_marginRight="8dip"-->
+                <!--android:layout_marginTop="60dp">-->
+
+
+                <!--<EditText-->
+                    <!--android:id="@+id/editText"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="8dip"-->
+                    <!--android:layout_marginRight="8dip"-->
+                    <!--android:ems="10"-->
+                    <!--android:hint="select department"-->
+                    <!--android:inputType="textPersonName" />-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:id="@+id/watts2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/editText2"-->
+                <!--android:layout_marginLeft="8dip"-->
+                <!--android:layout_marginRight="8dip"-->
+                <!--android:layout_marginTop="-6dp">-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/watts"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="8dip"-->
+                    <!--android:layout_marginRight="8dip"-->
+                    <!--android:ems="10"-->
+                    <!--android:hint="select program"-->
+                    <!--android:inputType="textPersonName"-->
+
+                    <!--/>-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+
+            <Spinner
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:spinnerMode="dialog"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                android:fontFamily="serif-monospace"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/shape"
+
+                />
+
+
+            <ImageView
+                android:id="@+id/locate11"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ddown"
+                android:layout_alignParentRight="true"
+                android:layout_above="@+id/editText2"
+                android:layout_marginBottom="-92dp"
+                android:layout_marginRight="8dip"
+
+                />
+
+
+            <Spinner
+                android:id="@+id/watts2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                android:background="@drawable/shape"
+                android:layout_below="@+id/editText2"
+                android:layout_marginTop="16dp"
+
+                />
+
+            <ImageView
+                android:id="@+id/locate111"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ddown"
+                android:layout_alignParentRight="true"
+                android:layout_above="@+id/watts2"
+                android:layout_marginBottom="-52dp"
+                android:layout_marginRight="8dip"
+
+                />
+
+
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:id="@+id/num2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/watts2"-->
+                <!--android:layout_marginLeft="8dip"-->
+                <!--android:layout_marginRight="8dip"-->
+                <!--android:layout_marginTop="15dp">-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/num"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="8dip"-->
+                    <!--android:layout_marginRight="8dip"-->
+                    <!--android:ems="10"-->
+                    <!--android:hint="select academic year"-->
+                    <!--android:inputType="textPersonName"-->
+
+                    <!--/>-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+            <Spinner
+                android:id="@+id/num2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                android:background="@drawable/shape"
+                android:layout_below="@+id/watts2"
+                android:layout_marginTop="15dp"
+
+                />
+
+            <ImageView
+                android:id="@+id/num"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ddown"
+                android:layout_alignParentRight="true"
+                android:layout_above="@+id/num2"
+                android:layout_marginBottom="-47dp"
+                android:layout_marginRight="8dip"
+
+                />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/num2"
+                android:layout_alignStart="@+id/num2"
+                android:layout_below="@+id/num2"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="8dip"
+                android:textStyle="bold"
+                android:text="choose file to upload" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/num3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button2"
+                android:layout_marginTop="-5dp">
+
+                <EditText
+                    android:id="@+id/num33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="8dip"
+                    android:ems="10"
+                    android:hint="input pdf name(should correspond to the name of the course)"
+                    android:inputType="textPersonName"
+
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="File Name: " />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_toEndOf="@+id/textView6"
+                android:layout_toRightOf="@+id/textView6"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit ="marquee_forever"
+                android:text="No file chosen" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/holo_blue_light"
+            android:id="@+id/below"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+            >
+
+            <TextView
+                android:id="@+id/lolo"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Upload Pdf"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:layout_marginRight="12dip"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:visibility="gone"
+                android:text="TextView" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/uploadpdf"
+        app:layout_anchor="@id/card_view"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:layout_anchorGravity="bottom|right|end"/>
+
+</android.support.design.widget.CoordinatorLayout>
