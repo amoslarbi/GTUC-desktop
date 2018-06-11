@@ -15,6 +15,7 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -98,6 +99,7 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
 
     //Uri to store the image uri
     private Uri filePath;
+    SwipeRefreshLayout swiperefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,7 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
 
         //Requesting storage permission
         requestStoragePermission();
-
+        swiperefresh=(SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         listView = (ListView) findViewById(R.id.listview);
 
         textView5 = (TextView) findViewById(R.id.textView5);
@@ -168,7 +170,7 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
             }
         });
 
-        //task.execute("http://aroma.one957.com/upload.php");
+        //task.execute( "http://gtuc.one957.com/getPdfs.php");
         //task.execute("http://192.168.137.1:8012/client/upload.php");
         task.execute( "http://192.168.43.234/pdf/getPdfs.php");
         task.setEachExceptionsHandler(new EachExceptionsHandler() {
@@ -193,6 +195,104 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
             @Override
             public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
                 Toast.makeText(getApplicationContext(), "Encoding Error ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // code to refresh
+
+                pdfList.clear();
+                HashMap<String, String> postData = new HashMap<String, String>();
+
+                postData.put("depa", textView5.getText().toString());
+                //postData.put("mobile","android");
+
+                PostResponseAsyncTask task = new PostResponseAsyncTask(Courselist.this,postData, new AsyncResponse() {
+                    @Override
+                    public void processFinish(String str) {
+
+                        if(str.contains("success")) {
+
+                            try {
+                                JSONArray jArray = new JSONArray(str);
+                                //Toast.makeText(getApplicationContext(), String.valueOf(str), Toast.LENGTH_SHORT).show();
+
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    JSONObject jsonObject = jArray.getJSONObject(i);
+
+
+                                    //Declaring a Pdf object to add it to the ArrayList  pdfList
+                                    Pdf pdf  = new Pdf();
+                                    String pdfName = jsonObject.getString("name");
+                                    String pdfUrl = jsonObject.getString("url");
+                                    String pdfDepartment = jsonObject.getString("coursename");
+                                    String pdfProgram = jsonObject.getString("program");
+                                    String pdfAcademicyear = jsonObject.getString("academicyear");
+                                    String pdfLname = jsonObject.getString("lname");
+                                    pdf.setUrl(pdfUrl);
+                                    pdf.setDepartment(pdfDepartment);
+                                    pdf.setProgram(pdfProgram);
+                                    pdf.setAcademicyear(pdfAcademicyear);
+                                    pdf.setLname(pdfLname);
+                                    pdfList.add(pdf);
+
+                                }
+
+                                pdfAdapter=new PdfAdapter(Courselist.this,R.layout.depalist, pdfList);
+                                listView.setAdapter(pdfAdapter);
+                                pdfAdapter.notifyDataSetChanged();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+                        if(str.contains("Failed")){
+
+                            SweetAlertDialog su = new SweetAlertDialog(Courselist.this, SweetAlertDialog.ERROR_TYPE);
+                            su.setTitleText("Sorry no questions available");
+                            su.show();
+
+                        }
+
+                    }
+                });
+
+                //task.execute( "http://gtuc.one957.com/getPdfs.php");
+                //task.execute("http://192.168.137.1:8012/client/upload.php");
+                task.execute( "http://192.168.43.234/pdf/getPdfs.php");
+                task.setEachExceptionsHandler(new EachExceptionsHandler() {
+                    @Override
+                    public void handleIOException(IOException e) {
+                        Toast.makeText(getApplicationContext(), "Cannot Connect to server  ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleMalformedURLException(MalformedURLException e) {
+                        Toast.makeText(getApplicationContext(), "URL Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleProtocolException(ProtocolException e) {
+                        Toast.makeText(getApplicationContext(), "Protocol Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                        Toast.makeText(getApplicationContext(), "Encoding Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                swiperefresh.setRefreshing(false);   //code to stop refresh animation
 
             }
         });

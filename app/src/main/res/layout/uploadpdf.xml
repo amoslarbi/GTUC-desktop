@@ -136,8 +136,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:spinnerMode="dialog"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
                 android:fontFamily="serif-monospace"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/shape"
@@ -162,8 +160,6 @@
                 android:id="@+id/watts2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
                 android:background="@drawable/shape"
                 android:layout_below="@+id/editText2"
                 android:layout_marginTop="16dp"
@@ -210,8 +206,6 @@
                 android:id="@+id/num2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
                 android:background="@drawable/shape"
                 android:layout_below="@+id/watts2"
                 android:layout_marginTop="15dp"
@@ -238,7 +232,7 @@
                 android:layout_alignStart="@+id/num2"
                 android:layout_below="@+id/num2"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="8dip"
+
                 android:textStyle="bold"
                 android:text="choose file to upload" />
 
@@ -253,10 +247,8 @@
                     android:id="@+id/num33"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="8dip"
                     android:ems="10"
-                    android:hint="input pdf name(should correspond to the name of the course)"
+                    android:hint="input pdf name(eg.course name)"
                     android:inputType="textPersonName"
 
                     />

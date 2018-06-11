@@ -15,6 +15,7 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -95,12 +96,13 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
     //storage permission code
     private static final int STORAGE_PERMISSION_CODE = 123;
     public static final String UPLOAD_URL = "http://192.168.43.234/pdf/pdf.php";
+    //public static final String UPLOAD_URL = "http://gtuc.one957.com/pdf.php";
     public static final String PDF_FETCH_URL = "http://192.168.43.234/pdf/getPdfs.php";
 
 
     //Uri to store the image uri
     private Uri filePath;
-    ProgressDialog progressDialog;
+    SwipeRefreshLayout swiperefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +112,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
         //Requesting storage permission
         requestStoragePermission();
         listView = (ListView) findViewById(R.id.listview);
+        swiperefresh=(SwipeRefreshLayout) findViewById(R.id.swiperefresh);
 
         textView5 = (TextView) findViewById(R.id.textView5);
         textView5.setText(getIntent().getStringExtra("food"));
@@ -171,7 +174,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             }
         });
 
-        //task.execute("http://aroma.one957.com/upload.php");
+        //task.execute( "http://gtuc.one957.com/getPdfs.php");
         //task.execute("http://192.168.137.1:8012/client/upload.php");
         task.execute( "http://192.168.43.234/pdf/getPdfs.php");
         task.setEachExceptionsHandler(new EachExceptionsHandler() {
@@ -196,6 +199,103 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             @Override
             public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
                 Toast.makeText(getApplicationContext(), "Encoding Error ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // code to refresh
+
+                pdfList.clear();
+                HashMap<String, String> postData = new HashMap<String, String>();
+
+                postData.put("depa", textView5.getText().toString());
+                //postData.put("mobile","android");
+
+                PostResponseAsyncTask task = new PostResponseAsyncTask(Leccourselist.this,postData, new AsyncResponse() {
+                    @Override
+                    public void processFinish(String str) {
+
+                        if(str.contains("success")) {
+
+                            try {
+                                JSONArray jArray = new JSONArray(str);
+                                //Toast.makeText(getApplicationContext(), String.valueOf(str), Toast.LENGTH_SHORT).show();
+
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    JSONObject jsonObject = jArray.getJSONObject(i);
+
+
+                                    //Declaring a Pdf object to add it to the ArrayList  pdfList
+                                    Pdf pdf  = new Pdf();
+                                    String pdfName = jsonObject.getString("name");
+                                    String pdfUrl = jsonObject.getString("url");
+                                    String pdfDepartment = jsonObject.getString("coursename");
+                                    String pdfProgram = jsonObject.getString("program");
+                                    String pdfAcademicyear = jsonObject.getString("academicyear");
+                                    String pdfLname = jsonObject.getString("lname");
+                                    pdf.setUrl(pdfUrl);
+                                    pdf.setDepartment(pdfDepartment);
+                                    pdf.setProgram(pdfProgram);
+                                    pdf.setAcademicyear(pdfAcademicyear);
+                                    pdf.setLname(pdfLname);
+                                    pdfList.add(pdf);
+
+                                }
+
+                                pdfAdapter=new PdfAdapter(Leccourselist.this,R.layout.depalist, pdfList);
+                                listView.setAdapter(pdfAdapter);
+                                pdfAdapter.notifyDataSetChanged();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+                        if(str.contains("Failed")){
+
+                            SweetAlertDialog su = new SweetAlertDialog(Leccourselist.this, SweetAlertDialog.ERROR_TYPE);
+                            su.setTitleText("Sorry no questions available");
+                            su.show();
+
+                        }
+
+                    }
+                });
+
+                //task.execute( "http://gtuc.one957.com/getPdfs.php");
+                //task.execute("http://192.168.137.1:8012/client/upload.php");
+                task.execute( "http://192.168.43.234/pdf/getPdfs.php");
+                task.setEachExceptionsHandler(new EachExceptionsHandler() {
+                    @Override
+                    public void handleIOException(IOException e) {
+                        Toast.makeText(getApplicationContext(), "Cannot Connect to server  ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleMalformedURLException(MalformedURLException e) {
+                        Toast.makeText(getApplicationContext(), "URL Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleProtocolException(ProtocolException e) {
+                        Toast.makeText(getApplicationContext(), "Protocol Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                        Toast.makeText(getApplicationContext(), "Encoding Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                swiperefresh.setRefreshing(false);   //code to stop refresh animation
 
             }
         });
@@ -267,14 +367,26 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                 scroll.setSelected(true);
 
-                String [] acyearspin = {"2000/2001", "2001/2002", "2002/2003", "2003/2004", "2004/2005",
+                String [] acyearspin = {"SELECT ACADEMIC YEAR", "2000/2001", "2001/2002", "2002/2003", "2003/2004", "2004/2005",
                         "2005/2006", "2006/2007", "2007/2008", "2008/2009", "2009/2010"
                 ,"2010/2011", "2011/2012", "2012/2013", "2013/2014", "2014/2015", "2015/2016"
                 , "2016/2017", "2017/2018", "2018/2019"};
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(Leccourselist.this, android.R.layout.simple_spinner_dropdown_item, acyearspin);
                 s3.setAdapter(adapter);
 
-                String[] items1 = new String[]{"SELECT DEPARTMENT", "FIRST", "SECOND", "THIRD","FOURTH", "FIVE",};
+//                String[] items1 = new String[]{"SELECT DEPARTMENT FIRST", "BSC Business Administration", "BSC Computer Engineering", "BSC Information Technology",
+//                        "BSC Telecom Engineering", "MBA Strategic Management","BED Mathematics", "BED Religious studies", "BED Management", "BED Accounting",
+//                        "BBA Human Resourse Management", "BBA Marketing", "MAB Banking and Finance", "MPHIL Curriculum and instruction", "MED Educational Administration and leadership",
+//                        "PGD in Pastoral Ministry", "BBA Accounting", "BSC Agribusiness", "BSC Midwifery","BSC Mathematics and Statistics","BSC Nursing","BSC Computer Science", "BBA Accounting",
+//                        "BED English Language"};
+//                ArrayAdapter<String> adapters1 = new ArrayAdapter<>(Leccourselist.this, android.R.layout.simple_spinner_dropdown_item, items1);
+//                s1.setAdapter(adapters1);
+
+                String[] items1 = new String[]{"SELECT DEPARTMENT FIRST", "BSC Business Administration", "BSC Computer Engineering", "BSC Information Technology",
+                        "BSC Telecom Engineering", "MBA Strategic Management",
+                "BBA Human Resourse Management", "BBA Marketing", "MAB Banking and Finance", "MED Educational Administration and leadership"
+                , "BBA Accounting", "BSC Agribusiness", "BSC Midwifery","BSC Mathematics and Statistics","BSC Nursing","BSC Computer Science",
+                "BED English Language"};
                 ArrayAdapter<String> adapters1 = new ArrayAdapter<>(Leccourselist.this, android.R.layout.simple_spinner_dropdown_item, items1);
                 s1.setAdapter(adapters1);
 
@@ -288,7 +400,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                         // TODO Auto-generated method stub
                         String sp1 = String.valueOf(s1.getSelectedItem());
                         //Toast.makeText(this, sp1, Toast.LENGTH_SHORT).show();
-                        if (sp1.contentEquals("FIRST")) {
+                        if (sp1.contentEquals("BSC Business Administration")) {
                             List<String> list = new ArrayList<String>();
                             list.add("SELECT PROGRAM");
                             list.add("ONE");
@@ -308,7 +420,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         }
 
-                        if (sp1.contentEquals("SECOND")) {
+                        if (sp1.contentEquals("BSC Computer Engineering")) {
                             List<String> list = new ArrayList<String>();
                             list.add("SELECT PROGRAM");
                             list.add("ONE");
@@ -328,7 +440,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         }
 
-                        if (sp1.contentEquals("THIRD")) {
+                        if (sp1.contentEquals("BSC Information Technology")) {
                             List<String> list = new ArrayList<String>();
                             list.add("SELECT PROGRAM");
                             list.add("ONE");
@@ -348,7 +460,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         }
 
-                        if (sp1.contentEquals("FOURTH")) {
+                        if (sp1.contentEquals("BSC Telecom Engineering")) {
                             List<String> list = new ArrayList<String>();
                             list.add("SELECT PROGRAM");
                             list.add("ONE");
@@ -368,7 +480,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         }
 
-                        if (sp1.contentEquals("FIVE")) {
+                        if (sp1.contentEquals("MBA Strategic Management")) {
                             List<String> list = new ArrayList<String>();
                             list.add("SELECT PROGRAM");
                             list.add("ONE");
@@ -387,6 +499,227 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                             s2.setAdapter(dataAdapter);
 
                         }
+
+                        if (sp1.contentEquals("BBA Human Resourse Management")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BBA Marketing")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("MAB Banking and Finance")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("MED Educational Administration and leadership")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BBA Accounting")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BSC Agribusiness")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BSC Midwifery")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BSC Mathematics and Statistics")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BSC Nursing")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BSC Computer Science")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
+                        if (sp1.contentEquals("BED English Language")) {
+                            List<String> list = new ArrayList<String>();
+                            list.add("SELECT PROGRAM");
+                            list.add("ONE");
+                            list.add("TWO");
+                            list.add("THREE");
+                            list.add("FOUR");
+                            list.add("FIVE");
+                            list.add("SIX");
+                            list.add("SEVEN");
+                            list.add("EIGHT");
+
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
+                                    android.R.layout.simple_spinner_item, list);
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            dataAdapter.notifyDataSetChanged();
+                            s2.setAdapter(dataAdapter);
+
+                        }
+
 
                         if (sp1.contentEquals("SELECT DEPARTMENT")) {
                             List<String> list = new ArrayList<String>();
@@ -497,11 +830,6 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                 Toast.makeText(Leccourselist.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
-//                            if (exc.getMessage().contains("")){
-//                                Toast.makeText(Leccourselist.this, "herh ", Toast.LENGTH_LONG).show();
-//
-//
-//                            }
 
                         }
 
