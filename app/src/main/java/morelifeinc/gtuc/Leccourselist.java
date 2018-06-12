@@ -402,7 +402,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                         //Toast.makeText(this, sp1, Toast.LENGTH_SHORT).show();
                         if (sp1.contentEquals("BSC Business Administration")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -422,7 +422,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Computer Engineering")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -442,7 +442,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Information Technology")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -462,7 +462,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Telecom Engineering")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -482,7 +482,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("MBA Strategic Management")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -502,7 +502,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BBA Human Resourse Management")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -522,7 +522,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BBA Marketing")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -542,7 +542,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("MAB Banking and Finance")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -562,7 +562,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("MED Educational Administration and leadership")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -582,7 +582,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BBA Accounting")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -602,7 +602,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Agribusiness")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -622,7 +622,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Midwifery")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -642,7 +642,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Mathematics and Statistics")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -662,7 +662,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Nursing")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -682,7 +682,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BSC Computer Science")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");
@@ -702,7 +702,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         if (sp1.contentEquals("BED English Language")) {
                             List<String> list = new ArrayList<String>();
-                            list.add("SELECT PROGRAM");
+                            list.add("SELECT COURSE");
                             list.add("ONE");
                             list.add("TWO");
                             list.add("THREE");

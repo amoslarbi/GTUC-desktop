@@ -80,61 +80,16 @@
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="380dp"
-            android:layout_marginLeft="12dip"
-            android:layout_marginRight="12dip"
             android:clipToPadding="false"
 
             >
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:id="@+id/editText2"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="8dip"-->
-                <!--android:layout_marginRight="8dip"-->
-                <!--android:layout_marginTop="60dp">-->
-
-
-                <!--<EditText-->
-                    <!--android:id="@+id/editText"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="8dip"-->
-                    <!--android:layout_marginRight="8dip"-->
-                    <!--android:ems="10"-->
-                    <!--android:hint="select department"-->
-                    <!--android:inputType="textPersonName" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:id="@+id/watts2"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@+id/editText2"-->
-                <!--android:layout_marginLeft="8dip"-->
-                <!--android:layout_marginRight="8dip"-->
-                <!--android:layout_marginTop="-6dp">-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/watts"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="8dip"-->
-                    <!--android:layout_marginRight="8dip"-->
-                    <!--android:ems="10"-->
-                    <!--android:hint="select program"-->
-                    <!--android:inputType="textPersonName"-->
-
-                    <!--/>-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
 
             <Spinner
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:spinnerMode="dialog"
                 android:fontFamily="serif-monospace"
                 android:layout_marginTop="60dp"
@@ -160,6 +115,8 @@
                 android:id="@+id/watts2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:background="@drawable/shape"
                 android:layout_below="@+id/editText2"
                 android:layout_marginTop="16dp"
@@ -179,33 +136,12 @@
                 />
 
 
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:id="@+id/num2"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@+id/watts2"-->
-                <!--android:layout_marginLeft="8dip"-->
-                <!--android:layout_marginRight="8dip"-->
-                <!--android:layout_marginTop="15dp">-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/num"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="8dip"-->
-                    <!--android:layout_marginRight="8dip"-->
-                    <!--android:ems="10"-->
-                    <!--android:hint="select academic year"-->
-                    <!--android:inputType="textPersonName"-->
-
-                    <!--/>-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
             <Spinner
                 android:id="@+id/num2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:background="@drawable/shape"
                 android:layout_below="@+id/watts2"
                 android:layout_marginTop="15dp"
@@ -240,6 +176,8 @@
                 android:id="@+id/num3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:layout_below="@+id/button2"
                 android:layout_marginTop="-5dp">
 
@@ -247,6 +185,8 @@
                     android:id="@+id/num33"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dip"
+                    android:layout_marginRight="6dip"
                     android:ems="10"
                     android:hint="input pdf name(eg.course name)"
                     android:inputType="textPersonName"
@@ -259,6 +199,8 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"

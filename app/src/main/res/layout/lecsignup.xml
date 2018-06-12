@@ -79,8 +79,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:layout_marginLeft="12dip"
-            android:layout_marginRight="12dip"
             android:id="@+id/relativeLayout"
             android:clipToPadding="false"
 
@@ -90,8 +88,8 @@
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:layout_marginTop="60dp"
                 >
 
@@ -100,10 +98,8 @@
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="8dip"
                     android:ems="10"
-                    android:hint="Username"
+                    android:hint="Username(last name first)"
                     android:inputType="textPersonName"
                     />
 
@@ -113,8 +109,8 @@
                 android:id="@+id/watts2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/editText2"
                 >
@@ -123,8 +119,6 @@
                     android:id="@+id/watts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="8dip"
                     android:ems="10"
                     android:hint="Faculty ID"
                     android:inputType="textPersonName"
@@ -137,8 +131,8 @@
                 android:id="@+id/num2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/watts2"
                 >
@@ -148,8 +142,6 @@
                     android:id="@+id/num"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="8dip"
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword"

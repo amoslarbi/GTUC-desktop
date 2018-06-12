@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     View mview;
     FloatingActionButton sposted;
     String sendlogin;
+    private Session session;//global variable
+    private FloatingActionButton nLogOutBtn;
 
     public static final String hello = "hellol";
     public static final String qhello = "hellolol";
@@ -50,11 +52,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        //session = new Session(cntx); //in oncreate
+        session.setusename("USERNAME");
 
         lstudentid  = (EditText) findViewById(R.id.editText2);
         lpassword  = (EditText) findViewById(R.id.watts2);
         textView3  = (TextView) findViewById(R.id.textView3);
         textView4  = (TextView) findViewById(R.id.textView4);
+
+        nLogOutBtn = (FloatingActionButton) findViewById(R.id.LogOutBtn);
+
+        nLogOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent startMainScreen = new Intent(getApplicationContext(),Userguide.class);
+                startActivity(startMainScreen);
+
+            }
+        });
+
 
         hy = (CircularProgressButton) findViewById(R.id.hy);
         hy.setOnClickListener(new View.OnClickListener() {
