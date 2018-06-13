@@ -72,7 +72,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
     ListView listView;
     SearchView search;
     FloatingActionButton forward;
-    EditText acyear, edin;
+    EditText naa, edin;
     Button choose;
     ArrayList<String> depa;
     ArrayList<String> ccode;
@@ -95,9 +95,8 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
     //storage permission code
     private static final int STORAGE_PERMISSION_CODE = 123;
-    public static final String UPLOAD_URL = "http://192.168.43.234/pdf/pdf.php";
-    //public static final String UPLOAD_URL = "http://gtuc.one957.com/pdf.php";
-    public static final String PDF_FETCH_URL = "http://192.168.43.234/pdf/getPdfs.php";
+    //public static final String UPLOAD_URL = "http://192.168.43.234/pdf/pdf.php";
+    public static final String UPLOAD_URL = "http://gtuc.one957.com/pdf.php";
 
 
     //Uri to store the image uri
@@ -140,8 +139,8 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                 Pdf pdf  = new Pdf();
                                 String pdfName = jsonObject.getString("name");
                                 String pdfUrl = jsonObject.getString("url");
-                                String pdfDepartment = jsonObject.getString("coursename");
-                                String pdfProgram = jsonObject.getString("program");
+                                    String pdfDepartment = jsonObject.getString("program");
+                                    String pdfProgram = jsonObject.getString("coursename");
                                 String pdfAcademicyear = jsonObject.getString("academicyear");
                                 String pdfLname = jsonObject.getString("lname");
                                     pdf.setUrl(pdfUrl);
@@ -174,9 +173,8 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             }
         });
 
-        //task.execute( "http://gtuc.one957.com/getPdfs.php");
-        //task.execute("http://192.168.137.1:8012/client/upload.php");
-        task.execute( "http://192.168.43.234/pdf/getPdfs.php");
+        task.execute( "http://gtuc.one957.com/getPdfs.php");
+        //task.execute( "http://192.168.43.234/pdf/getPdfs.php");
         task.setEachExceptionsHandler(new EachExceptionsHandler() {
             @Override
             public void handleIOException(IOException e) {
@@ -232,8 +230,8 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                     Pdf pdf  = new Pdf();
                                     String pdfName = jsonObject.getString("name");
                                     String pdfUrl = jsonObject.getString("url");
-                                    String pdfDepartment = jsonObject.getString("coursename");
-                                    String pdfProgram = jsonObject.getString("program");
+                                    String pdfDepartment = jsonObject.getString("program");
+                                    String pdfProgram = jsonObject.getString("coursename");
                                     String pdfAcademicyear = jsonObject.getString("academicyear");
                                     String pdfLname = jsonObject.getString("lname");
                                     pdf.setUrl(pdfUrl);
@@ -266,9 +264,9 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                     }
                 });
 
-                //task.execute( "http://gtuc.one957.com/getPdfs.php");
+                task.execute( "http://gtuc.one957.com/getPdfs.php");
                 //task.execute("http://192.168.137.1:8012/client/upload.php");
-                task.execute( "http://192.168.43.234/pdf/getPdfs.php");
+                //task.execute( "http://192.168.43.234/pdf/getPdfs.php");
                 task.setEachExceptionsHandler(new EachExceptionsHandler() {
                     @Override
                     public void handleIOException(IOException e) {
@@ -359,6 +357,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                 s2 = (Spinner) mview.findViewById(R.id.watts2);
                 s3  = (Spinner) mview.findViewById(R.id.num2);
                 edin  = (EditText) mview.findViewById(R.id.num33);
+                naa  = (EditText) mview.findViewById(R.id.naa3);
                 choose  = (Button) mview.findViewById(R.id.button2);
                 scroll  = (TextView) mview.findViewById(R.id.textView7);
                 textView8  = (TextView) mview.findViewById(R.id.textView8);
@@ -443,14 +442,14 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                         if (sp1.contentEquals("BSC Information Technology")) {
                             List<String> list = new ArrayList<String>();
                             list.add("SELECT COURSE");
-                            list.add("ONE");
-                            list.add("TWO");
-                            list.add("THREE");
-                            list.add("FOUR");
-                            list.add("FIVE");
-                            list.add("SIX");
-                            list.add("SEVEN");
-                            list.add("EIGHT");
+                            list.add("Advanced System Analysis and Design");
+                            list.add("Artificial Intelligence");
+                            list.add("Data Communication and Networking");
+                            list.add("Mobile Application and Development");
+                            list.add("Distributed Systems");
+                            list.add("Computer and Cyber Forencics");
+                            list.add("Computer Security");
+                            list.add("Programming with C++");
 
                             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
                                     android.R.layout.simple_spinner_item, list);
@@ -764,7 +763,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                         //onActivityResult();
                         String str1 = s1.getSelectedItem().toString();
                         //onActivityResult();
-                        if (str1.contentEquals("SELECT DEPARTMENT")) {
+                        if (str1.contentEquals("SELECT DEPARTMENT FIRST")) {
 
                             SweetAlertDialog su = new SweetAlertDialog(Leccourselist.this, SweetAlertDialog.ERROR_TYPE);
                             su.setTitleText("Inappropriate Department selection");
@@ -774,10 +773,10 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         String str2 = s2.getSelectedItem().toString();
 
-                        if (str2.contentEquals("SELECT PROGRAM")) {
+                        if (str2.contentEquals("SELECT COURSE")) {
 
                             SweetAlertDialog su = new SweetAlertDialog(Leccourselist.this, SweetAlertDialog.ERROR_TYPE);
-                            su.setTitleText("Inappropriate Program selection");
+                            su.setTitleText("Inappropriate Course selection");
                             su.show();
                             return;
                         }
@@ -796,6 +795,15 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                         if (TextUtils.isEmpty(name)) {
                             edin.setError("Field cant be Empty");
                             edin.requestFocus();
+                            return;
+                        }
+
+                        String course = naa.getText().toString().trim();
+                        //String send1 = password.getText().toString();
+
+                        if (TextUtils.isEmpty(course)) {
+                            naa.setError("Field cant be Empty");
+                            naa.requestFocus();
                             return;
                         }
 
@@ -818,6 +826,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                         .addParameter("name", name) //Adding text parameter to the request
                                         .addParameter("department", s1.getSelectedItem().toString()) //Adding text parameter to the request
                                         .addParameter("program", s2.getSelectedItem().toString()) //Adding text parameter to the request
+                                        .addParameter("coursecode", naa.getText().toString()) //Adding text parameter to the request
                                         .addParameter("academicyear", s3.getSelectedItem().toString()) //Adding text parameter to the request
                                         .addParameter("lname", textView8.getText().toString()) //Adding text parameter to the request
                                         .setNotificationConfig(new UploadNotificationConfig())

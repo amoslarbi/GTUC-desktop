@@ -79,7 +79,7 @@
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="380dp"
+            android:layout_height="410dp"
             android:clipToPadding="false"
 
             >
@@ -189,6 +189,30 @@
                     android:layout_marginRight="6dip"
                     android:ems="10"
                     android:hint="input pdf name(eg.course name)"
+                    android:inputType="textPersonName"
+
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/naa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dip"
+                android:layout_marginRight="6dip"
+                android:layout_below="@+id/num3"
+                android:layout_marginTop="-5dp">
+
+                <EditText
+                    android:id="@+id/naa3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dip"
+                    android:layout_marginRight="6dip"
+                    android:ems="10"
+                    android:hint="input course code"
                     android:inputType="textPersonName"
 
                     />

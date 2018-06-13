@@ -137,8 +137,8 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                             Pdf pdf  = new Pdf();
                             String pdfName = jsonObject.getString("name");
                             String pdfUrl = jsonObject.getString("url");
-                            String pdfDepartment = jsonObject.getString("coursename");
-                            String pdfProgram = jsonObject.getString("program");
+                            String pdfDepartment = jsonObject.getString("program");
+                            String pdfProgram = jsonObject.getString("coursename");
                             String pdfAcademicyear = jsonObject.getString("academicyear");
                             String pdfLname = jsonObject.getString("lname");
                             pdf.setUrl(pdfUrl);
@@ -170,9 +170,9 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
             }
         });
 
-        //task.execute( "http://gtuc.one957.com/getPdfs.php");
+        task.execute( "http://gtuc.one957.com/getPdfs.php");
         //task.execute("http://192.168.137.1:8012/client/upload.php");
-        task.execute( "http://192.168.43.234/pdf/getPdfs.php");
+        //task.execute( "http://192.168.43.234/pdf/getPdfs.php");
         task.setEachExceptionsHandler(new EachExceptionsHandler() {
             @Override
             public void handleIOException(IOException e) {
@@ -225,12 +225,12 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                                     JSONObject jsonObject = jArray.getJSONObject(i);
 
 
-                                    //Declaring a Pdf object to add it to the ArrayList  pdfList
+                                    //Declaring a Pdf object to add it to the ArrayList  pdfList program
                                     Pdf pdf  = new Pdf();
                                     String pdfName = jsonObject.getString("name");
                                     String pdfUrl = jsonObject.getString("url");
-                                    String pdfDepartment = jsonObject.getString("coursename");
-                                    String pdfProgram = jsonObject.getString("program");
+                                    String pdfDepartment = jsonObject.getString("program");
+                                    String pdfProgram = jsonObject.getString("coursename");
                                     String pdfAcademicyear = jsonObject.getString("academicyear");
                                     String pdfLname = jsonObject.getString("lname");
                                     pdf.setUrl(pdfUrl);
@@ -263,9 +263,9 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                     }
                 });
 
-                //task.execute( "http://gtuc.one957.com/getPdfs.php");
+                task.execute( "http://gtuc.one957.com/getPdfs.php");
                 //task.execute("http://192.168.137.1:8012/client/upload.php");
-                task.execute( "http://192.168.43.234/pdf/getPdfs.php");
+                //task.execute( "http://192.168.43.234/pdf/getPdfs.php");
                 task.setEachExceptionsHandler(new EachExceptionsHandler() {
                     @Override
                     public void handleIOException(IOException e) {
