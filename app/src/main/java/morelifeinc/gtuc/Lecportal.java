@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
@@ -60,6 +61,7 @@ public class Lecportal extends AppCompatActivity
     FloatingActionButton aboutback;
     EditText editText, editText1, watts;
     ArrayList<String> depa;
+    SwipeRefreshLayout swiperefresh;
     // String[] depa;
     //MyAdapter adapter;
     ArrayAdapter<String> adapter;
@@ -68,6 +70,8 @@ public class Lecportal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecportal);
+
+        swiperefresh=(SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Lecturer Portal");
@@ -158,6 +162,96 @@ public class Lecportal extends AppCompatActivity
 
             }
 
+        });
+
+
+
+        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // code to refresh
+
+                depa.clear();
+                HashMap<String, String> postData = new HashMap<String, String>();
+
+                PostResponseAsyncTask task = new PostResponseAsyncTask(Lecportal.this, postData, new AsyncResponse() {
+                    @Override
+                    public void processFinish(String str) {
+                        //Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+
+                        if (str.contains("success")) {
+
+
+                            try {
+                                JSONArray jArray = new JSONArray(str);
+
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    JSONObject data = jArray.getJSONObject(i);
+                                    Log.d("JSONResponse", String.valueOf(data));
+
+                                    depa.add(data.getString("depa"));
+
+                                    adapter.notifyDataSetChanged();
+                                    //String kiev = textView3.getText().toString();
+                                }
+
+                            } catch (JSONException e) {
+
+                                e.printStackTrace();
+                            }
+
+
+//                    SweetAlertDialog su = new SweetAlertDialog(Lecportal.this, SweetAlertDialog.SUCCESS_TYPE);
+//                    su.setTitleText("Account created");
+//                    su.show();
+
+                        }
+
+                        if (str.contains("Failed")) {
+
+                            SweetAlertDialog su = new SweetAlertDialog(Lecportal.this, SweetAlertDialog.ERROR_TYPE);
+                            su.setTitleText("Exception handler failed");
+                            su.show();
+
+                        }
+
+                    }
+                });
+
+                //task.execute("http://aroma.one957.com/upload.php");
+                //task.execute("http://192.168.137.1:8012/client/upload.php");
+                task.execute("http://gtuc.one957.com/courses.php");
+                task.setEachExceptionsHandler(new EachExceptionsHandler() {
+                    @Override
+                    public void handleIOException(IOException e) {
+                        Toast.makeText(getApplicationContext(), "Cannot Connect to server  ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleMalformedURLException(MalformedURLException e) {
+                        Toast.makeText(getApplicationContext(), "URL Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleProtocolException(ProtocolException e) {
+                        Toast.makeText(getApplicationContext(), "Protocol Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+                        Toast.makeText(getApplicationContext(), "Encoding Error ", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                });
+
+
+                swiperefresh.setRefreshing(false);   //code to stop refresh animation
+
+            }
         });
 
 

@@ -304,11 +304,6 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Pdf pdf = (Pdf) parent.getItemAtPosition(position);
-//                Intent intent = new Intent();
-//                intent.setAction(Intent.ACTION_VIEW);
-//                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-//                intent.setData(Uri.parse(pdf.getUrl()));
-//                startActivity(intent);
 
                 Intent startMainScreen = new Intent(getApplicationContext(),view.class);
                 startMainScreen.putExtra("name", pdf.getUrl());
@@ -318,22 +313,6 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             }
         });
 
-//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                // TODO Auto-generated method stub
-//
-//                Pdf pdf = (Pdf) parent.getItemAtPosition(position);
-//                Intent intent = new Intent();
-//                intent.setAction(Intent.ACTION_VIEW);
-//                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-//                intent.setData(Uri.parse(pdf.getUrl()));
-//                startActivity(intent);
-//
-//
-//                return true;
-//            }
-//        });
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -853,17 +832,6 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
             }
         });
 
-
-
-//        listView = (ListView) findViewById(R.id.listview);
-//        depa = new ArrayList<>();
-//        ccode = new ArrayList<>();
-//        lec = new ArrayList<>();
-
-//        adapter = new MyAdapter(getApplicationContext(), depa, ccode, lec);
-//        //adapter = new ArrayAdapter<String>(this, depa);
-//        listView.setAdapter(adapter);
-
        registerForContextMenu(listView);
 
         search = (SearchView) findViewById(R.id.search);
@@ -887,13 +855,6 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
         return false;
     }
 
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        menu.setHeaderTitle("Tap to Delete Appliance");
-//        menu.add(0, v.getId(), 0, "Delete");
-//
-//    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
@@ -931,39 +892,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
     }
 
-//    static class MyAdapter extends ArrayAdapter {
-//        ArrayList<String> applianceArray;
-//        ArrayList<String> ccodeArray;
-//        ArrayList<String> lecArray;
-//
-//        public MyAdapter(Context applicationContext, ArrayList<String> depa, ArrayList<String> ccode, ArrayList<String> lec) {
-//            super(applicationContext, R.layout.depalist, R.id.number1, depa);
-//            this.applianceArray = depa;
-//            this.ccodeArray = ccode;
-//            this.lecArray = lec;
-//
-//        }
-//
-//
-//        @NotNull
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            View view = convertView;
-//            //if (view == null) {
-//            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            view = inflater.inflate(R.layout.depalist, parent, false);
-//            // }
-//
-//            TextView appliance = (TextView) view.findViewById(R.id.number1);
-//            TextView ccode = (TextView) view.findViewById(R.id.appliance);
-//            TextView lec = (TextView) view.findViewById(R.id.watts);
-//            appliance.setText(applianceArray.get(position));
-//            ccode.setText(ccodeArray.get(position));
-//            lec.setText(lecArray.get(position));
-//
-//            return view;
-//        }
-//    }
+
 
     //handling the image chooser activity result
     @Override
