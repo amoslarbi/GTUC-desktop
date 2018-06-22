@@ -102,7 +102,6 @@
         </LinearLayout>
 
 
-
     </LinearLayout>
 
     <!--card_view:cardCornerRadius="10dp"-->
@@ -124,7 +123,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="250dp"
             android:id="@+id/relativeLayout"
             android:clipToPadding="false"
 
@@ -199,6 +198,9 @@
                 android:layout_alignTop="@+id/textView"
                 android:textColor="#3b5998"
                 android:text="Sign Up" />
+
+
+
 
 
         </RelativeLayout>

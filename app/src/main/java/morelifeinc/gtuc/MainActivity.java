@@ -110,11 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
                         if(str.contains("success")) {
 
-//                            Intent startMainScreen = new Intent(getApplicationContext(),Studentportal.class);
-//                            startActivity(startMainScreen);
-//                            Toast.makeText(getApplicationContext(), "URL Error ", Toast.LENGTH_SHORT).show();
-
-                                //Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
                                 try {
                                     JSONArray jArray = new JSONArray(str);
 
@@ -128,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
                                         String kiev = textView3.getText().toString();
 
-                                        if(kiev.contains("gt") || kiev.contains("GT") || kiev.contains("TU") || kiev.contains("tu")) {
+                                        if(!(kiev.contains("-") || kiev.contains("-"))) {
                                             //Toast.makeText(getApplicationContext(), textView3.getText().toString(), Toast.LENGTH_SHORT).show();
                                             Intent startMainScreen = new Intent(getApplicationContext(),Studentportal.class);
 
@@ -146,14 +141,9 @@ public class MainActivity extends AppCompatActivity {
 
                                         }
 
-//                                        if(kiev.contains("GT")) {
-//                                            //Toast.makeText(getApplicationContext(), textView3.getText().toString(), Toast.LENGTH_SHORT).show();
-//                                            Intent startMainScreen = new Intent(getApplicationContext(),Studentportal.class);
-//                                            startActivity(startMainScreen);
 //
-//                                        }
 
-                                        if(kiev.contains("lec") || kiev.contains("LEC")) {
+                                        if(kiev.contains("-") || kiev.contains("-")) {
                                             //Toast.makeText(getApplicationContext(), textView3.getText().toString(), Toast.LENGTH_SHORT).show();
                                             Intent startMainScreen = new Intent(getApplicationContext(),Lecportal.class);
 
@@ -171,14 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
                                         }
 
-//                                        if(kiev.contains("LEC")) {
-//                                            //Toast.makeText(getApplicationContext(), textView3.getText().toString(), Toast.LENGTH_SHORT).show();
-//                                            Intent startMainScreen = new Intent(getApplicationContext(),Lecportal.class);
-//                                            startActivity(startMainScreen);
-//
-//                                        }
-
-                                        if(kiev.contains("Admin")) {
+                                        if(kiev.contains("Admin") || kiev.contains("admin")) {
                                             //Toast.makeText(getApplicationContext(), "Create admin portal", Toast.LENGTH_SHORT).show();
                                             Intent startMainScreen = new Intent(getApplicationContext(),AdminPortal.class);
                                             startActivity(startMainScreen);
@@ -292,6 +275,14 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
 
+                        if (!(send.contains("TU") || send.contains("tu"))) {
+                            SweetAlertDialog su = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
+                            su.setTitleText("Invalid Student ID");
+                            su.show();
+                            return;
+                        }
+
+
                         HashMap<String, String> postData = new HashMap<String, String>();
 
                         postData.put("username", username.getText().toString());
@@ -318,14 +309,13 @@ public class MainActivity extends AppCompatActivity {
                                     SweetAlertDialog su = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
                                     su.setTitleText("Account already exits");
                                     su.show();
-                                    dialog.dismiss();
 
                                 }
 
                                 if(str.contains("Failed")){
 
                                     SweetAlertDialog su = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
-                                    su.setTitleText("Exception handler failed");
+                                    su.setTitleText("Server down contact Admin");
                                     su.show();
                                     dialog.dismiss();
 
@@ -334,9 +324,9 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
-                        //task.execute("http://aroma.one957.com/upload.php");
+                        task.execute("http://gtuc.one957.com/upload.php");
                         //task.execute("http://192.168.137.1:8012/client/upload.php");
-                        task.execute( "http://192.168.43.63/gtuc/upload.php");
+                        //task.execute( "http://192.168.43.63/gtuc/upload.php");
                         task.setEachExceptionsHandler(new EachExceptionsHandler() {
                             @Override
                             public void handleIOException(IOException e) {

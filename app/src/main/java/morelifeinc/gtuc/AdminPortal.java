@@ -94,6 +94,20 @@ public class AdminPortal extends AppCompatActivity {
                                     return;
                                 }
 
+                                if (!(send.contains("TU") || send.contains("tu"))) {
+                                    SweetAlertDialog su = new SweetAlertDialog(AdminPortal.this, SweetAlertDialog.ERROR_TYPE);
+                                    su.setTitleText("Invalid Lecturer ID");
+                                    su.show();
+                                    return;
+                                }
+
+                                if (!(send.contains("-"))) {
+                                    SweetAlertDialog su = new SweetAlertDialog(AdminPortal.this, SweetAlertDialog.ERROR_TYPE);
+                                    su.setTitleText("Invalid Lecturer ID");
+                                    su.show();
+                                    return;
+                                }
+
                                 HashMap<String, String> postData = new HashMap<String, String>();
 
                                 postData.put("username", username.getText().toString());

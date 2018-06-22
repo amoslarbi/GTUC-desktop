@@ -139,14 +139,14 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                 Pdf pdf  = new Pdf();
                                 String pdfName = jsonObject.getString("name");
                                 String pdfUrl = jsonObject.getString("url");
-                                    String pdfDepartment = jsonObject.getString("program");
+                                String pdfDepartment = jsonObject.getString("program");
                                     String pdfProgram = jsonObject.getString("coursename");
-                                String pdfAcademicyear = jsonObject.getString("academicyear");
+                                //String pdfAcademicyear = jsonObject.getString("academicyear");
                                 String pdfLname = jsonObject.getString("lname");
                                     pdf.setUrl(pdfUrl);
                                 pdf.setDepartment(pdfDepartment);
                                 pdf.setProgram(pdfProgram);
-                                pdf.setAcademicyear(pdfAcademicyear);
+                                //pdf.setAcademicyear(pdfAcademicyear);
                                 pdf.setLname(pdfLname);
                                 pdfList.add(pdf);
 
@@ -232,12 +232,12 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                     String pdfUrl = jsonObject.getString("url");
                                     String pdfDepartment = jsonObject.getString("program");
                                     String pdfProgram = jsonObject.getString("coursename");
-                                    String pdfAcademicyear = jsonObject.getString("academicyear");
+                                    //String pdfAcademicyear = jsonObject.getString("academicyear");
                                     String pdfLname = jsonObject.getString("lname");
                                     pdf.setUrl(pdfUrl);
                                     pdf.setDepartment(pdfDepartment);
                                     pdf.setProgram(pdfProgram);
-                                    pdf.setAcademicyear(pdfAcademicyear);
+                                    //pdf.setAcademicyear(pdfAcademicyear);
                                     pdf.setLname(pdfLname);
                                     pdfList.add(pdf);
 
@@ -334,7 +334,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                 sposted = (FloatingActionButton) mview.findViewById(R.id.button3);
                 s1 = (Spinner) mview.findViewById(R.id.editText2);
                 s2 = (Spinner) mview.findViewById(R.id.watts2);
-                s3  = (Spinner) mview.findViewById(R.id.num2);
+                //s3  = (Spinner) mview.findViewById(R.id.num2);
                 edin  = (EditText) mview.findViewById(R.id.num33);
                 naa  = (EditText) mview.findViewById(R.id.naa3);
                 choose  = (Button) mview.findViewById(R.id.button2);
@@ -344,13 +344,13 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                 textView8.setText(getIntent().getStringExtra("lname"));
 
                 scroll.setSelected(true);
-
-                String [] acyearspin = {"SELECT ACADEMIC YEAR", "2000/2001", "2001/2002", "2002/2003", "2003/2004", "2004/2005",
-                        "2005/2006", "2006/2007", "2007/2008", "2008/2009", "2009/2010"
-                ,"2010/2011", "2011/2012", "2012/2013", "2013/2014", "2014/2015", "2015/2016"
-                , "2016/2017", "2017/2018", "2018/2019"};
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(Leccourselist.this, android.R.layout.simple_spinner_dropdown_item, acyearspin);
-                s3.setAdapter(adapter);
+//
+//                String [] acyearspin = {"SELECT ACADEMIC YEAR", "2000/2001", "2001/2002", "2002/2003", "2003/2004", "2004/2005",
+//                        "2005/2006", "2006/2007", "2007/2008", "2008/2009", "2009/2010"
+//                ,"2010/2011", "2011/2012", "2012/2013", "2013/2014", "2014/2015", "2015/2016"
+//                , "2016/2017", "2017/2018", "2018/2019"};
+//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(Leccourselist.this, android.R.layout.simple_spinner_dropdown_item, acyearspin);
+//                s3.setAdapter(adapter);
 
 //                String[] items1 = new String[]{"SELECT DEPARTMENT FIRST", "BSC Business Administration", "BSC Computer Engineering", "BSC Information Technology",
 //                        "BSC Telecom Engineering", "MBA Strategic Management","BED Mathematics", "BED Religious studies", "BED Management", "BED Accounting",
@@ -794,6 +794,68 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                             Toast.makeText(Leccourselist.this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
                         }
 
+//                        else {
+//
+//                        HashMap<String, String> postData = new HashMap<String, String>();
+//
+//                        postData.put("pdf", path); //Adding file
+//                        postData.put("name", name); //Adding text parameter to the request
+//                        postData.put("department", s1.getSelectedItem().toString()); //Adding text parameter to the request
+//                        postData.put("program", s2.getSelectedItem().toString()); //Adding text parameter to the request
+//                        postData.put("coursecode", naa.getText().toString()); //Adding text parameter to the request
+//                        postData.put("lname", textView8.getText().toString()); //Adding text parameter to the request
+//                        //postData.put("mobile","android");
+//
+//                        PostResponseAsyncTask task = new PostResponseAsyncTask(Leccourselist.this,postData, new AsyncResponse() {
+//                            @Override
+//                            public void processFinish(String str) {
+//                                Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
+////                                if(str.contains("already")){
+////
+////                                    SweetAlertDialog su = new SweetAlertDialog(Leccourselist.this, SweetAlertDialog.ERROR_TYPE);
+////                                    su.setTitleText("Account already exits");
+////                                    su.show();
+////                                    dialog.dismiss();
+////
+////                                }
+//
+//                            }
+//                        });
+//
+//                        //task.execute("http://aroma.one957.com/upload.php");
+//                        //task.execute("http://192.168.137.1:8012/client/upload.php");
+//                        task.execute( "http://gtuc.one957.com/pdf.php");
+//                        task.setEachExceptionsHandler(new EachExceptionsHandler() {
+//                            @Override
+//                            public void handleIOException(IOException e) {
+//                                Toast.makeText(getApplicationContext(), "Cannot Connect to server  ", Toast.LENGTH_SHORT).show();
+//
+//                            }
+//
+//                            @Override
+//                            public void handleMalformedURLException(MalformedURLException e) {
+//                                Toast.makeText(getApplicationContext(), "URL Error ", Toast.LENGTH_SHORT).show();
+//
+//                            }
+//
+//                            @Override
+//                            public void handleProtocolException(ProtocolException e) {
+//                                Toast.makeText(getApplicationContext(), "Protocol Error ", Toast.LENGTH_SHORT).show();
+//
+//                            }
+//
+//                            @Override
+//                            public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+//                                Toast.makeText(getApplicationContext(), "Encoding Error ", Toast.LENGTH_SHORT).show();
+//
+//                            }
+//                        });
+//
+//                        }
+
+
+
+
                         else {
                             //Uploading code
                             try {
@@ -806,18 +868,21 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                         .addParameter("department", s1.getSelectedItem().toString()) //Adding text parameter to the request
                                         .addParameter("program", s2.getSelectedItem().toString()) //Adding text parameter to the request
                                         .addParameter("coursecode", naa.getText().toString()) //Adding text parameter to the request
-                                        .addParameter("academicyear", s3.getSelectedItem().toString()) //Adding text parameter to the request
+                                        //.addParameter("academicyear", s3.getSelectedItem().toString()) //Adding text parameter to the request
                                         .addParameter("lname", textView8.getText().toString()) //Adding text parameter to the request
                                         .setNotificationConfig(new UploadNotificationConfig())
                                         .setMaxRetries(2)
                                         .startUpload(); //Starting the upload
 
+                                Toast.makeText(Leccourselist.this, uploadId, Toast.LENGTH_SHORT).show();
 
+                            }
 
-                            } catch (Exception exc) {
+                            catch (Exception exc) {
                                 Toast.makeText(Leccourselist.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
+
 
                         }
 
@@ -840,6 +905,15 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
     }
 
+//    @Override
+//    protected void onPreExecute() {
+//
+//        // Init and show dialog
+//        this.progressDialog = new ProgressDialog(this.context);
+//        this.progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//        this.progressDialog.setCancelable(false);
+//        this.progressDialog.show();
+//    }
 
     @Override
     public boolean onQueryTextSubmit(String query) {

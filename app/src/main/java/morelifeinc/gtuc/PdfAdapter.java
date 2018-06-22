@@ -39,7 +39,7 @@ public class PdfAdapter extends ArrayAdapter<Pdf>
             holder.number1= (TextView) row.findViewById(R.id.number1);
             holder.appliance= (TextView) row.findViewById(R.id.appliance);
             holder.watts= (TextView) row.findViewById(R.id.watts);
-            holder.acc33= (TextView) row.findViewById(R.id.acc33);
+            //holder.acc33= (TextView) row.findViewById(R.id.acc33);
 
             row.setTag(holder);
         }
@@ -52,7 +52,7 @@ public class PdfAdapter extends ArrayAdapter<Pdf>
 
         holder.number1.setText(pdf.getDepartment());
         holder.appliance.setText(pdf.getProgram());
-        holder.acc33.setText(pdf.getAcademicyear());
+       // holder.acc33.setText(pdf.getAcademicyear());
         holder.watts.setText(pdf.getLname());
 
         return row;
@@ -61,7 +61,7 @@ public class PdfAdapter extends ArrayAdapter<Pdf>
 
     class PdfHolder
     {
-        TextView number1,appliance,watts,acc33;
+        TextView number1,appliance,watts;
     }
-
+//removed acc3 (academic year)
 }

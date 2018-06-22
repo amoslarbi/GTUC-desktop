@@ -139,12 +139,12 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                             String pdfUrl = jsonObject.getString("url");
                             String pdfDepartment = jsonObject.getString("program");
                             String pdfProgram = jsonObject.getString("coursename");
-                            String pdfAcademicyear = jsonObject.getString("academicyear");
+                            //String pdfAcademicyear = jsonObject.getString("academicyear");
                             String pdfLname = jsonObject.getString("lname");
                             pdf.setUrl(pdfUrl);
                             pdf.setDepartment(pdfDepartment);
                             pdf.setProgram(pdfProgram);
-                            pdf.setAcademicyear(pdfAcademicyear);
+                           //pdf.setAcademicyear(pdfAcademicyear);
                             pdf.setLname(pdfLname);
                             pdfList.add(pdf);
 
@@ -231,12 +231,12 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                                     String pdfUrl = jsonObject.getString("url");
                                     String pdfDepartment = jsonObject.getString("program");
                                     String pdfProgram = jsonObject.getString("coursename");
-                                    String pdfAcademicyear = jsonObject.getString("academicyear");
+                                    //String pdfAcademicyear = jsonObject.getString("academicyear");
                                     String pdfLname = jsonObject.getString("lname");
                                     pdf.setUrl(pdfUrl);
                                     pdf.setDepartment(pdfDepartment);
                                     pdf.setProgram(pdfProgram);
-                                    pdf.setAcademicyear(pdfAcademicyear);
+                                    //pdf.setAcademicyear(pdfAcademicyear);
                                     pdf.setLname(pdfLname);
                                     pdfList.add(pdf);
 
