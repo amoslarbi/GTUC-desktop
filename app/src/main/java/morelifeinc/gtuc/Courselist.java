@@ -2,6 +2,7 @@ package morelifeinc.gtuc;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -66,11 +68,13 @@ import java.util.UUID;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static java.security.AccessController.getContext;
+
 public class Courselist extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     TextView textView5, scroll, textView8;
     ListView listView;
-    SearchView search;
+    SearchView searchView;
     FloatingActionButton forward;
     EditText acyear, edin;
     Button choose;
@@ -79,7 +83,7 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
     ArrayList<String> lec;
     //an array to hold the different pdf objects
     ArrayList<Pdf> pdfList= new ArrayList<Pdf>();
-
+    List<Pdf> mListItems;
     PdfAdapter pdfAdapter;
     //MyAdapter adapter;
     AlertDialog.Builder sett;
@@ -87,7 +91,11 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
     FloatingActionButton sposted;
     Spinner s1, s2, s3;
     String path;
+    EditText editText3;
 
+    String[] courseArray;
+    String[] ccodeArray;
+    String[] lecArray;
     //Pdf request code
     private int PICK_PDF_REQUEST = 1;
 
@@ -110,6 +118,40 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
         requestStoragePermission();
         swiperefresh=(SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         listView = (ListView) findViewById(R.id.listview);
+
+        editText3 = (EditText) findViewById(R.id.editText3) ;
+
+        searchView = (SearchView) findViewById(R.id.search);
+        searchView.setOnQueryTextListener(this);
+
+//        editText3.addTextChangedListener(new TextWatcher() {
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                List<Pdf> textToCheckList=new ArrayList<>();
+//                String textToCheck=s.toString();
+//                if(s.length()!=0){
+//                    //code for making First letter of string CAPITAL
+//                    textToCheck = textToCheck.substring(0, 1).toUpperCase() + textToCheck.substring(1);
+//
+//                    //code for filling second list from backup list based on text to search here in this case, it is "textToCheck"
+//                    for (Pdf searchModel: pdfList) {
+//                        if(searchModel.getDepartment().startsWith(textToCheck)){
+//                            textToCheckList.add(searchModel);
+//                        }
+//                    }
+//                }else{
+//                    textToCheckList.addAll(pdfList) ;
+//                }
+//
+//                // Setting new list to adapter and notifying it
+//                //pdfAdapter.setLo(textToCheckList);
+//                pdfAdapter.notifyDataSetChanged();
+//            }
+//
+//        });
+
+
 
         textView5 = (TextView) findViewById(R.id.textView5);
         textView5.setText(getIntent().getStringExtra("food"));
@@ -149,6 +191,11 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
                             pdfList.add(pdf);
 
                         }
+//
+//                        pdfAdapter=new PdfAdapter(Courselist.this,courseArray, ccodeArray, lecArray);
+//                        listView.setAdapter(pdfAdapter);
+//                        pdfAdapter.notifyDataSetChanged();
+
 
                         pdfAdapter=new PdfAdapter(Courselist.this,R.layout.depalist, pdfList);
                         listView.setAdapter(pdfAdapter);
@@ -319,29 +366,81 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
         textView5 = (TextView) findViewById(R.id.textView5);
         textView5.setText(getIntent().getStringExtra("food"));
 
-
         registerForContextMenu(listView);
 
-        search = (SearchView) findViewById(R.id.search);
-        search.setOnQueryTextListener(this);
-
-
 
     }
 
+//    class MyAdapter extends ArrayAdapter {
+//        String[] courseArray = pdf.getDepartment();
+//        String[] ccodeArray;
+//        String[] lecArray;
+//
+//        public MyAdapter(Context c, String[] course1,  String[] ccode1,  String[] lec1){
+//
+//            super(c, R.layout.depalist, R.id.number1, course1);
+//            this.courseArray = course1;
+//            this.ccodeArray = ccode1;
+//            this.lecArray = lec1;
+//
+//        }
+//
+//        @NonNull
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent){
+//
+//            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            View row = inflater.inflate(R.layout.depalist,parent,false);
+//
+//            TextView course = (TextView) row.findViewById(R.id.number1);
+//            TextView ccode = (TextView) row.findViewById(R.id.appliance);
+//            TextView lec = (TextView) row.findViewById(R.id.watts);
+//
+//            course.setText(courseArray[position]);
+//            ccode.setText(ccodeArray[position]);
+//            lec.setText(lecArray[position]);
+//
+//            return row;
+//        }
+//
+//
+//    }
+
+
+
+public void filter(String chko) {
+    ArrayList<Pdf> temp = new ArrayList<>();
+    for (Pdf d : pdfList) {
+        //or use .equal(text) with you want equal match
+        //use .toLowerCase() for better matches
+        String joint = d.getDepartment().toLowerCase();
+        if (joint.contains(chko)) {
+            temp.add(d);
+        }
+
+    }
+    pdfAdapter.setFilter(temp);
+
+}
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
+    public boolean onQueryTextSubmit(String s) {
         return false;
-
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        String text = newText;
-        pdfAdapter.getFilter().filter(newText);
+    public boolean onQueryTextChange(String s) {
+
+        String st = s.toString();
+        filter(st);
+
 
         return false;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
 
@@ -372,16 +471,8 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
         }
 
         return super.onContextItemSelected(item);
-
-
     }
 
-
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 
 
     //handling the image chooser activity result
@@ -435,5 +526,6 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
             }
         }
     }
+
 
 }

@@ -874,7 +874,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                         .setMaxRetries(2)
                                         .startUpload(); //Starting the upload
 
-                                Toast.makeText(Leccourselist.this, uploadId, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(Leccourselist.this, uploadId, Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -905,15 +905,6 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
     }
 
-//    @Override
-//    protected void onPreExecute() {
-//
-//        // Init and show dialog
-//        this.progressDialog = new ProgressDialog(this.context);
-//        this.progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-//        this.progressDialog.setCancelable(false);
-//        this.progressDialog.show();
-//    }
 
     @Override
     public boolean onQueryTextSubmit(String query) {

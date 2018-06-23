@@ -79,9 +79,6 @@
 
         </activity>
 
-        <activity android:name=".uploadpdf">
-
-        </activity>
     </application>
 
 </manifest>
