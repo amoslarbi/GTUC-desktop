@@ -3,6 +3,7 @@ package morelifeinc.gtuc;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -91,7 +92,6 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
     FloatingActionButton sposted;
     Spinner s1, s2, s3;
     String path;
-    EditText editText3;
 
     String[] courseArray;
     String[] ccodeArray;
@@ -119,38 +119,8 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
         swiperefresh=(SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         listView = (ListView) findViewById(R.id.listview);
 
-        editText3 = (EditText) findViewById(R.id.editText3) ;
-
         searchView = (SearchView) findViewById(R.id.search);
         searchView.setOnQueryTextListener(this);
-
-//        editText3.addTextChangedListener(new TextWatcher() {
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                List<Pdf> textToCheckList=new ArrayList<>();
-//                String textToCheck=s.toString();
-//                if(s.length()!=0){
-//                    //code for making First letter of string CAPITAL
-//                    textToCheck = textToCheck.substring(0, 1).toUpperCase() + textToCheck.substring(1);
-//
-//                    //code for filling second list from backup list based on text to search here in this case, it is "textToCheck"
-//                    for (Pdf searchModel: pdfList) {
-//                        if(searchModel.getDepartment().startsWith(textToCheck)){
-//                            textToCheckList.add(searchModel);
-//                        }
-//                    }
-//                }else{
-//                    textToCheckList.addAll(pdfList) ;
-//                }
-//
-//                // Setting new list to adapter and notifying it
-//                //pdfAdapter.setLo(textToCheckList);
-//                pdfAdapter.notifyDataSetChanged();
-//            }
-//
-//        });
-
 
 
         textView5 = (TextView) findViewById(R.id.textView5);
@@ -408,7 +378,7 @@ public class Courselist extends AppCompatActivity implements SearchView.OnQueryT
 
 
 
-public void filter(String chko) {
+    public void filter(String chko) {
     ArrayList<Pdf> temp = new ArrayList<>();
     for (Pdf d : pdfList) {
         //or use .equal(text) with you want equal match
@@ -473,7 +443,37 @@ public void filter(String chko) {
         return super.onContextItemSelected(item);
     }
 
-
+//    Button selectRemoveButton = (Button)findViewById(R.id.list_remove_selected_rows);
+//        selectRemoveButton.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//
+//            AlertDialog alertDialog = new AlertDialog.Builder(Courselist.this).create();
+//            alertDialog.setMessage("Are you sure to remove selected listview items?");
+//
+//            alertDialog.setButton(Dialog.BUTTON_POSITIVE, "Confirm", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int which) {
+//                    int size = pdfList.size();
+//                    for(int i=0;i<size;i++)
+//                    {
+//                        ListViewItemDTO dto = pdfList.get(i);
+//
+//                        if(dto.isChecked())
+//                        {
+//                            pdfList.remove(i);
+//                            i--;
+//                            size = pdfList.size();
+//                        }
+//                    }
+//
+//                    pdfAdapter.notifyDataSetChanged();
+//                }
+//            });
+//
+//            alertDialog.show();
+//        }
+//    });
 
     //handling the image chooser activity result
     @Override

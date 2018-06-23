@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class PdfAdapter extends ArrayAdapter<Pdf>
         TextView course = (TextView) row.findViewById(R.id.number1);
         TextView ccode = (TextView) row.findViewById(R.id.appliance);
         TextView lec = (TextView) row.findViewById(R.id.watts);
+        //CheckBox ch = (CheckBox) row.findViewById(R.id.checkBox);
 
         //pdf = data.get(position);
 
@@ -112,6 +114,7 @@ public class PdfAdapter extends ArrayAdapter<Pdf>
     public int getCount() {
         return data.size();
     }
+
 
 //removed acc3 (academic year)
 }

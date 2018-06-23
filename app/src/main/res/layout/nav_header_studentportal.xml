@@ -14,10 +14,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="75dp"
+        android:layout_width="45dp"
         android:layout_height="75dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/gtu" />
+
 
     <TextView
         android:id="@+id/id"

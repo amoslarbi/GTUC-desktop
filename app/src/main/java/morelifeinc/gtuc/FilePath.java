@@ -23,14 +23,14 @@ public class FilePath
      * @return path of the selected image file from gallery
      */
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
     public static String getPath(final Context context, final Uri uri)
     {
         //check here to KITKAT or new version
-        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        //final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (DocumentsContract.isDocumentUri(context, uri)) {
 
             // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {

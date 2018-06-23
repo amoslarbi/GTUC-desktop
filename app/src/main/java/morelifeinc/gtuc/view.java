@@ -37,7 +37,7 @@ public class view extends AppCompatActivity {
 
         //String doc="<iframe src='" + vv.getText().toString() + "&embedded=true' width='100%' height='100%'  style='border: none;'></iframe>";
         String doc="<iframe src='http://docs.google.com/viewer?url=" + vv.getText().toString() + "&embedded=true' width='100%' height='100%'  style='border: none;'></iframe>";
-        Toast.makeText(getApplicationContext(), String.valueOf(doc), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), String.valueOf(doc), Toast.LENGTH_LONG).show();
 
 
         WebView  wv = (WebView)findViewById(R.id.webview);

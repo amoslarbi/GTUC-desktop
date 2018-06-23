@@ -171,7 +171,7 @@ public class Studentportal extends AppCompatActivity
                 PostResponseAsyncTask task = new PostResponseAsyncTask(Studentportal.this, postData, new AsyncResponse() {
                     @Override
                     public void processFinish(String str) {
-                        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
 
                         if (str.contains("success")) {
 

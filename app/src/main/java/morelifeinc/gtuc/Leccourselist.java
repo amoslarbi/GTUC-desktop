@@ -363,7 +363,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                 String[] items1 = new String[]{"SELECT DEPARTMENT FIRST", "BSC Business Administration", "BSC Computer Engineering", "BSC Information Technology",
                         "BSC Telecom Engineering", "MBA Strategic Management",
                 "BBA Human Resourse Management", "BBA Marketing", "MAB Banking and Finance", "MED Educational Administration and leadership"
-                , "BBA Accounting", "BSC Agribusiness", "BSC Midwifery","BSC Mathematics and Statistics","BSC Nursing","BSC Computer Science",
+                , "BBA Accounting", "BSC Agribusiness","BSC Mathematics and Statistics","BSC Computer Science",
                 "BED English Language"};
                 ArrayAdapter<String> adapters1 = new ArrayAdapter<>(Leccourselist.this, android.R.layout.simple_spinner_dropdown_item, items1);
                 s1.setAdapter(adapters1);
@@ -874,6 +874,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
                                         .setMaxRetries(2)
                                         .startUpload(); //Starting the upload
 
+
                                 //Toast.makeText(Leccourselist.this, uploadId, Toast.LENGTH_SHORT).show();
 
                             }
@@ -905,21 +906,35 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
     }
 
+    public void filter(String chko) {
+        ArrayList<Pdf> temp = new ArrayList<>();
+        for (Pdf d : pdfList) {
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            String joint = d.getDepartment().toLowerCase();
+            if (joint.contains(chko)) {
+                temp.add(d);
+            }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
+        }
+        pdfAdapter.setFilter(temp);
 
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        String text = newText;
-        pdfAdapter.getFilter().filter(newText);
-
+    public boolean onQueryTextSubmit(String s) {
         return false;
     }
 
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        String st = s.toString();
+        filter(st);
+
+
+        return false;
+    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
