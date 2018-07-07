@@ -47,5 +47,6 @@ dependencies {
     compile 'net.gotev:uploadservice:2.1'
     compile 'com.github.barteksc:android-pdf-viewer:2.0.3'
     compile 'com.android.volley:volley:1.0.0'
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
     testCompile 'junit:junit:4.12'
 }

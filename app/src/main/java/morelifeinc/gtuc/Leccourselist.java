@@ -598,25 +598,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         }
 
-                        if (sp1.contentEquals("BSC Midwifery")) {
-                            List<String> list = new ArrayList<String>();
-                            list.add("SELECT COURSE");
-                            list.add("ONE");
-                            list.add("TWO");
-                            list.add("THREE");
-                            list.add("FOUR");
-                            list.add("FIVE");
-                            list.add("SIX");
-                            list.add("SEVEN");
-                            list.add("EIGHT");
 
-                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
-                                    android.R.layout.simple_spinner_item, list);
-                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            dataAdapter.notifyDataSetChanged();
-                            s2.setAdapter(dataAdapter);
-
-                        }
 
                         if (sp1.contentEquals("BSC Mathematics and Statistics")) {
                             List<String> list = new ArrayList<String>();
@@ -638,25 +620,7 @@ public class Leccourselist extends AppCompatActivity implements SearchView.OnQue
 
                         }
 
-                        if (sp1.contentEquals("BSC Nursing")) {
-                            List<String> list = new ArrayList<String>();
-                            list.add("SELECT COURSE");
-                            list.add("ONE");
-                            list.add("TWO");
-                            list.add("THREE");
-                            list.add("FOUR");
-                            list.add("FIVE");
-                            list.add("SIX");
-                            list.add("SEVEN");
-                            list.add("EIGHT");
 
-                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Leccourselist.this,
-                                    android.R.layout.simple_spinner_item, list);
-                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            dataAdapter.notifyDataSetChanged();
-                            s2.setAdapter(dataAdapter);
-
-                        }
 
                         if (sp1.contentEquals("BSC Computer Science")) {
                             List<String> list = new ArrayList<String>();

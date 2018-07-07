@@ -24,10 +24,33 @@
 
     <include layout="@layout/content_lecportal" />
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar2"
+        android:visibility="invisible"
+        android:layout_marginTop="11dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/lol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="8dip"
+        android:layout_below="@+id/search"
+        android:text="Press and hold to download questions" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"
         android:layout_below="@+id/search"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -47,10 +70,21 @@
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
         android:layout_below="@+id/toolbar2"
-
         >
-
     </SearchView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/uploadpdf"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dip"
+        android:layout_marginBottom="25dp"
+        app:backgroundTint="#3b5998"
+        />
 
 
 </RelativeLayout>

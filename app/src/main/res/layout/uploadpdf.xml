@@ -81,7 +81,6 @@
             android:layout_width="match_parent"
             android:layout_height="410dp"
             android:clipToPadding="false"
-
             >
 
             <Spinner
@@ -94,6 +93,7 @@
                 android:fontFamily="serif-monospace"
                 android:layout_marginTop="70dp"
                 android:background="@drawable/shape"
+                android:clickable="false"
 
                 />
 
